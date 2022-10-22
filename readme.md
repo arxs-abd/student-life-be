@@ -14,11 +14,11 @@
 
 ###### Properti
 
-| Properti        | Deskripsi                                                            | Type   | Validasi                            |
-| --------------- | -------------------------------------------------------------------- | ------ | ----------------------------------- |
-| email           | Alamat Email yang Digunakan Untuk Mendaftar ke Dalam Website         | String | Input Harus Berupa Email yang Benar |
-| password        | Password Yang Digunakan Untuk Mendaftar ke Dalam Website             | String | Input Minimal 8 Karakter            |
-| passwordConfirm | Password yang Dituliskan Kembali Sebagai Password Konfirmasi Kembali | String | Input Minimal 8 Karakter            |
+| Properti         | Deskripsi                                                            | Type   | Validasi                            |
+| ---------------- | -------------------------------------------------------------------- | ------ | ----------------------------------- |
+| email            | Alamat Email yang Digunakan Untuk Mendaftar ke Dalam Website         | String | Input Harus Berupa Email yang Benar |
+| password         | Password Yang Digunakan Untuk Mendaftar ke Dalam Website             | String | Input Minimal 8 Karakter            |
+| password_confirm | Password yang Dituliskan Kembali Sebagai Password Konfirmasi Kembali | String | Input Minimal 8 Karakter            |
 
 ###### Contoh Request dan Response
 
