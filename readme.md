@@ -1,76 +1,79 @@
 # Student Life Back End
 
-## Documentation Api
+## Api Documentation
 
-### Autentikasi
+### Authentication
 
-##### 1. Register
+#### 1. Register
 
-###### Endpoint
+##### Endpoint
 
 ```Javascript
-/api/register
+POST /api/register
 ```
 
-###### Properti
+##### Field
 
-| Properti         | Deskripsi                                                            | Type   | Validasi                            |
-| ---------------- | -------------------------------------------------------------------- | ------ | ----------------------------------- |
-| email            | Alamat Email yang Digunakan Untuk Mendaftar ke Dalam Website         | String | Input Harus Berupa Email yang Benar |
-| password         | Password Yang Digunakan Untuk Mendaftar ke Dalam Website             | String | Input Minimal 8 Karakter            |
-| password_confirm | Password yang Dituliskan Kembali Sebagai Password Konfirmasi Kembali | String | Input Minimal 8 Karakter            |
+| Field            | Description                         | Type   | Validation                         |
+| ---------------- | ----------------------------------- | ------ | ---------------------------------- |
+| email            | The email used to register          | String | Valid email                        |
+| password         | The password used to register       | String | minimum 8 character                |
+| password_confirm | Rewritten password used to register | String | password_confirm equal to password |
 
-###### Contoh Request dan Response
+##### Example for Request and Response
 
 ```Javascript
-// Contoh Request yang Benar
+// Request
 {
     email : 'arisakhyar704@gmail.com',
     password : 'indonesiainyabesar',
     password_confirm : 'indonesiainyabesar',
 }
 // Response
+200 OK
 {
     status : 'success',
     msg : 'Signup Successfully'
 }
-// Contoh Request yang Salah
+// Request
 {
     email : 'arisakhyar704@gmail.com',
     password : 'indonesiainyabesar',
     password_confirm : 'indonesiainyabesar',
 }
 // Response
+401 UNAUTHORIZED
 {
     status : 'error',
     msg : 'Password confirmation does not match password'
 }
 ```
 
-##### 2. Login
+#### 2. Login
 
-###### Endpoint
+##### Endpoint
 
 ```Javascript
-/api/login
+POST /api/login
 ```
 
-###### Properti
+##### Field
 
-| Properti | Deskripsi                                                    | Type   | Validasi                            |
-| -------- | ------------------------------------------------------------ | ------ | ----------------------------------- |
-| email    | Alamat Email yang Digunakan Untuk Mendaftar ke Dalam Website | String | Input Harus Berupa Email yang Benar |
-| password | Password Yang Digunakan Untuk Mendaftar ke Dalam Website     | String | Input Minimal 8 Karakter            |
+| Field    | Description                   | Type   | Validation          |
+| -------- | ----------------------------- | ------ | ------------------- |
+| email    | The email used to register    | String | Valid Email         |
+| password | The password used to register | String | minimum 8 character |
 
-###### Contoh Request dan Response
+##### Example For Request and Response
 
 ```Javascript
-// Contoh Request yang Benar
+// Request
 {
     email : 'arisakhyar704@gmail.com',
     password : 'indonesiainyabesar',
 }
 // Response
+200 OK
 {
     status : 'success',
     msg : 'Login Successfully',
@@ -87,34 +90,36 @@
     password : 'indonesiainyakecil',
 }
 // Response
+401 UNAUTHORIZED
 {
     status : 'error',
     msg : 'Password is Wrong'
 }
 ```
 
-##### 3. Logout
+#### 3. Logout
 
-###### Endpoint
+##### Endpoint
 
 ```Javascript
-/api/logout
+POST /api/logout
 ```
 
-###### Properti
+##### Field
 
-| Properti       | Deskripsi                                                                   | Type   | Validasi |
-| -------------- | --------------------------------------------------------------------------- | ------ | -------- |
-| x-access-token | JSON Web Token Yang diterima Saat Proses Login dan Disimpan Kedalam Cookies | String | Ada      |
+| Field          | Description                                                        | Type   | Validation |
+| -------------- | ------------------------------------------------------------------ | ------ | ---------- |
+| x-access-token | JSON Web Token Received During Login Process and Stored In Cookies | String | Required   |
 
-###### Contoh Request dan Response
+##### Example For Request and Response
 
 ```Javascript
-// Contoh Request yang Benar
+// Request
 {
     x-acces-token : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzNTNiMDY2MzI3ZmFjOTI2ZmIyNmQ3YSIsImVtYWlsIjoiYXJpc21hQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJhJDEwJFd1UmZRc1U1UzNoeXVFaUJuRmw1ZC5XbG1uYnlJUVgxMURWZEdmNlkyTkFBV3ZadU1yQnhhIiwiX192IjowfSwiaWF0IjoxNjY2NDI5NDMzfQ.BkHJyJt5wogx3QfUU7TeRlyRyJj_ACg3eHcBen9zl7Q'
 }
 // Response
+200 OK
 {
     status : 'success',
     msg : 'Logout Successfully',
