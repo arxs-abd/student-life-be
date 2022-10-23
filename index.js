@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const actvityLogin = require('./routes/auth') 
-const port = 4000
+const port = process.env.PORT || 4000
 require('./utils/db')
 
 app.use(cors())
