@@ -7,7 +7,8 @@ const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const app = express()
 
-const actvityLogin = require('./routes/auth') 
+const routeAuth = require('./routes/auth') 
+const routeNote = require('./routes/notes')
 const port = process.env.PORT || 4000
 
 app.use(cors())
@@ -17,7 +18,8 @@ app.use(bodyParser.urlencoded({
   extended : true
 }))
 
-app.use(actvityLogin)
+app.use(routeAuth)
+app.use(routeNote)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

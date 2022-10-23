@@ -25,10 +25,8 @@ const checkValidtoAddUser = [
 ]
 
 const verifyToken = (req, res, next) => {
-    // let token = req.headers['x-access-token']
-    // console.log(token)
     const token = req.cookies['x-access-token']
-    // return token
+    
     if (!token) return res.status(401).send({
         status : 'error',
         msg : 'Invalid Token'

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const {noteSchema} = require('../model/note')
 
 const userSchema = new mongoose.Schema( {
     email : {
@@ -9,6 +10,7 @@ const userSchema = new mongoose.Schema( {
         type : String,
         required : true,
     },
+    note : [noteSchema]
 } )
 
 const User = mongoose.model('User', userSchema)

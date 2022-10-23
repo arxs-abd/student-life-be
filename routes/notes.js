@@ -37,3 +37,5 @@ router.delete('/api/note', async (req, res) => {
         msg : 'Note delete successfully'
     })
 })
+
+module.exports = router
