@@ -29,9 +29,15 @@ const verifyToken = (req, res, next) => {
     // console.log(token)
     const token = req.cookies['x-access-token']
     // return token
-    if (!token) return res.status(401).send('Invalid Login')
+    if (!token) return res.status(401).send({
+        status : 'error',
+        msg : 'Invalid Token'
+    })
     jwt.verify(token, 'SECRET', function(err, decoded) {
-        if (err) return res.status(500).send('Invalid Token')
+        if (err) return res.status(500).send({
+            status : 'error',
+            msg : 'Invalid Token'
+        })
         next()
     })
 }
