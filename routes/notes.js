@@ -1,5 +1,7 @@
 const express = require('express')
+const jwt = require('jsonwebtoken')
 const { Note } = require('../model/note')
+const { User } = require('../model/user')
 const router = express.Router()
 
 router.get('/api/note', async (req, res) => {
@@ -11,12 +13,27 @@ router.get('/api/note', async (req, res) => {
     })
 })
 
-router.post('/api/note', async (req, res) => {
-    const { title, decsription } = req.body
-    const data = {title, decsription}
-    const newNote = new Note(data)
-    await newNote.save()
+// router.get('/api/note/:id', async (req, res) => {
+//     return res.send({
+//         status : 'success',
+//         data : {
+//             note : 'Ini Notenya'
+//         }
+//     })
+// })
 
+router.post('/api/note', async (req, res) => {
+    const { title, description } = req.body
+    const token = jwt.verify(req.cookies['x-access-token'], 'SECRET')
+    const data = { title, description }
+    const newNote = new Note(data)
+    const user = await User.findOne({
+        _id : token.user._id
+    })
+    const allNote = user.note
+    allNote.push(newNote)
+    user.note = allNote
+    await user.save()
     return res.send({
         status : 'success',
         msg : 'Note add successfully'
@@ -25,13 +42,15 @@ router.post('/api/note', async (req, res) => {
 
 router.delete('/api/note', async (req, res) => {
     const { _id } = req.body
-    const note = await Note.findOne({
-        _id
+    const token = jwt.verify(req.cookies['x-access-token'], 'SECRET')
+    const user = await User.findOne({
+        _id : token.user._id
     })
-    if (!note) return res.send({
-        status : 'error',
-        msg : 'Cannot find the note'
+    const allNote = user.note
+    const newNotes = allNote.filter(note => {
+        return note._id !== _id
     })
+    user.note = newNotes
     return res.send({
         status : 'success',
         msg : 'Note delete successfully'
