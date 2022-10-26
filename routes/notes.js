@@ -48,9 +48,11 @@ router.delete('/api/note', async (req, res) => {
     })
     const allNote = user.note
     const newNotes = allNote.filter(note => {
-        return note._id !== _id
+        // console.log(String(note._id) !== _id)
+        return String(note._id) !== _id
     })
     user.note = newNotes
+    await user.save()
     return res.send({
         status : 'success',
         msg : 'Note delete successfully'
