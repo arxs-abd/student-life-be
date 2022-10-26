@@ -2,6 +2,7 @@ const express = require('express')
 const jwt = require('jsonwebtoken')
 const { Note } = require('../model/note')
 const { User } = require('../model/user')
+const { checkField } = require('../middleware/note')
 const router = express.Router()
 
 router.get('/api/note', async (req, res) => {
@@ -13,7 +14,7 @@ router.get('/api/note', async (req, res) => {
     })
 })
 
-router.post('/api/note', async (req, res) => {
+router.post('/api/note', checkField, async (req, res) => {
     const { title, description } = req.body
     const token = jwt.verify(req.cookies['x-access-token'], 'SECRET')
     const data = { title, description }
