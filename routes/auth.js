@@ -34,7 +34,7 @@ router.post('/api/login', async (req, res) => {
 
     let token = jwt.sign({
         user
-    }, 'SECRET')
+    }, process.env.SECRET_CODE)
 
     res.cookie('x-access-token', token)
 

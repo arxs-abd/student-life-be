@@ -16,9 +16,7 @@ const checkValidtoAddUser = [
         return true
     }),
     (req, res, next) => {
-        // return res.send(req.body)
         const errors = validationResult(req)
-        // return res.send(errors)
         if (errors.isEmpty()) return next()
         return res.status(400).send(errors)
     }
@@ -31,7 +29,7 @@ const verifyToken = (req, res, next) => {
         status : 'error',
         msg : 'Invalid Token'
     })
-    jwt.verify(token, 'SECRET', function(err, decoded) {
+    jwt.verify(token, process.env.SECRET_CODE, function(err, decoded) {
         if (err) return res.status(500).send({
             status : 'error',
             msg : 'Invalid Token'

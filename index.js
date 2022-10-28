@@ -21,6 +21,4 @@ app.use(bodyParser.urlencoded({
 app.use(routeAuth)
 app.use(routeNote)
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+app.listen(port, () => console.log(`Example app listening on port ${port}`))

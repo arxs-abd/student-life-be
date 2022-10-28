@@ -16,7 +16,7 @@ router.get('/api/note', async (req, res) => {
 
 router.post('/api/note', checkField, async (req, res) => {
     const { title, description } = req.body
-    const token = jwt.verify(req.cookies['x-access-token'], 'SECRET')
+    const token = jwt.verify(req.cookies['x-access-token'], process.env.SECRET_CODE)
     const data = { title, description }
     const newNote = new Note(data)
     const user = await User.findOne({
@@ -34,7 +34,7 @@ router.post('/api/note', checkField, async (req, res) => {
 
 router.put('/api/note', async (req, res) => {
     const { id, title, description } = req.body
-    const token = jwt.verify(req.cookies['x-access-token'], 'SECRET')
+    const token = jwt.verify(req.cookies['x-access-token'], process.env.SECRET_CODE)
     const user = await User.findOne({
         _id : token.user._id
     })
@@ -58,13 +58,12 @@ router.put('/api/note', async (req, res) => {
 
 router.delete('/api/note', async (req, res) => {
     const { id } = req.body
-    const token = jwt.verify(req.cookies['x-access-token'], 'SECRET')
+    const token = jwt.verify(req.cookies['x-access-token'], process.env.SECRET_CODE)
     const user = await User.findOne({
         _id : token.user._id
     })
     const allNote = user.note
     const newNotes = allNote.filter(note => {
-        // console.log(String(note._id) !== _id)
         return String(note._id) !== id
     })
     user.note = newNotes
