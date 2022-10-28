@@ -125,3 +125,149 @@ POST /api/logout
     msg : 'Logout Successfully',
 }
 ```
+
+### Note
+
+#### 2. Add
+
+##### Endpoint
+
+```Javascript
+POST /api/note
+```
+
+##### Field
+
+| Field       | Description             | Type   | Validation |
+| ----------- | ----------------------- | ------ | ---------- |
+| title       | title for the note      | String | Required   |
+| description | description of the note | String | Required   |
+
+##### Example For Request and Response
+
+```Javascript
+// Request
+{
+    title : 'Cara Makan',
+    description : 'Ambil makanan, lalu buka mulut'
+}
+// Response
+200 OK
+{
+    status : 'success',
+    msg : 'Note add successfully',
+}
+
+// Request
+{
+    title : 'Cara Makan'
+}
+// Response
+400 BAD REQUEST
+{
+    status : 'error',
+    errors : [
+        {
+            msg : 'Invalid Value',
+            param : 'description',
+            location : 'body'
+        }
+    ]
+}
+```
+
+#### 3. Update
+
+##### Endpoint
+
+```Javascript
+PUT /api/note
+```
+
+##### Field
+
+| Field       | Description             | Type     | Validation |
+| ----------- | ----------------------- | -------- | ---------- |
+| id          | id for the note         | ObjectId | Required   |
+| title       | title for the note      | String   | Required   |
+| description | description of the note | String   | Required   |
+
+##### Example For Request and Response
+
+```Javascript
+// Request
+{
+    id : '63592e9d8100fdd80683b2a3'
+    title : 'Cara Makan dan Minum',
+    description : 'Ambil makanan, lalu buka mulut kemudian minum'
+}
+// Response
+200 OK
+{
+    status : 'success',
+    msg : 'Note update successfully',
+}
+
+// Request
+{
+    title : 'Cara Makan'
+}
+// Response
+400 BAD REQUEST
+{
+    status : 'error',
+    errors : [
+        {
+            msg : 'Invalid Value',
+            param : 'description',
+            location : 'body'
+        }
+    ]
+}
+```
+
+#### 4. Delete
+
+##### Endpoint
+
+```Javascript
+DELETE /api/note
+```
+
+##### Field
+
+| Field | Description     | Type     | Validation |
+| ----- | --------------- | -------- | ---------- |
+| id    | id for the note | ObjectId | Required   |
+
+##### Example For Request and Response
+
+```Javascript
+// Request
+{
+    id : '63592e9d8100fdd80683b2a3'
+}
+// Response
+200 OK
+{
+    status : 'success',
+    msg : 'Note delete successfully',
+}
+
+// Request
+{
+    id : '63592e9d8100fdd80683b2a4'
+}
+// Response
+400 BAD REQUEST
+{
+    status : 'error',
+    errors : [
+        {
+            msg : 'Invalid Value',
+            param : 'description',
+            location : 'body'
+        }
+    ]
+}
+```
