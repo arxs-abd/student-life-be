@@ -262,12 +262,6 @@ DELETE /api/note
 400 BAD REQUEST
 {
     status : 'error',
-    errors : [
-        {
-            msg : 'Invalid Value',
-            param : 'description',
-            location : 'body'
-        }
-    ]
+    error : 'Note not Found'
 }
 ```
