@@ -11,7 +11,6 @@ const routeAuth = require('./routes/auth')
 const routeNote = require('./routes/notes')
 const port = process.env.PORT || 4000
 
-app.use(express.urlencoded())
 app.use(cors())
 app.use(cookieParser())
 app.use(bodyParser.json())
