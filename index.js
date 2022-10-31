@@ -11,7 +11,9 @@ const routeAuth = require('./routes/auth')
 const routeNote = require('./routes/notes')
 const port = process.env.PORT || 4000
 
-app.use(cors())
+app.use(cors({
+  origin: '*'
+}))
 app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
